@@ -7,7 +7,15 @@ PAL_BASE_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := libarpal_headers
-LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/inc
+LOCAL_EXPORT_C_INCLUDE_DIRS := \
+    $(LOCAL_PATH)/inc \
+    $(LOCAL_PATH)/stream/inc \
+    $(LOCAL_PATH)/device/inc \
+    $(LOCAL_PATH)/session/inc \
+    $(LOCAL_PATH)/resource_manager/inc \
+    $(LOCAL_PATH)/context_manager/inc \
+    $(LOCAL_PATH)/utils/inc \
+    $(LOCAL_PATH)/plugins/codecs
 
 LOCAL_VENDOR_MODULE := true
 
@@ -45,13 +53,6 @@ LOCAL_CFLAGS += -DAW_BACK_END_NAME=\"MI2S-LPAIF_WSA-RX-PRIMARY\"
 LOCAL_CFLAGS += -DAW_PCM_NAME_LIST=\"PCM100,PCM101,PCM102,PCM103,PCM104,COMPRESS105,VOICEMMODE1p,VOICEMMODE2p,VOICEMMODE1c,VOICEMMODE2c,PCM110,PCM111,PCM112,PCM113,PCM114,PCM115,PCM116,PCM117,PCM118,PCM119,PCM120,PCM121,PCM122,PCM123,PCM124,PCM125,PCM126\"
 
 LOCAL_C_INCLUDES := \
-    $(LOCAL_PATH)/stream/inc \
-    $(LOCAL_PATH)/device/inc \
-    $(LOCAL_PATH)/session/inc \
-    $(LOCAL_PATH)/resource_manager/inc \
-    $(LOCAL_PATH)/context_manager/inc \
-    $(LOCAL_PATH)/utils/inc \
-    $(LOCAL_PATH)/plugins/codecs \
     $(TOP)/system/media/audio_route/include \
     $(TOP)/system/media/audio/include
 

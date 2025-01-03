@@ -1607,7 +1607,8 @@ int ResourceManager::init_audio()
         return -EIO;
     }
 
-    getFileNameExtn(snd_card_name, file_name_extn, file_name_extn_wo_variant);
+    //getFileNameExtn(snd_card_name, file_name_extn, file_name_extn_wo_variant);
+    strlcat(file_name_extn, "volcano_mtp_fps", XML_PATH_EXTN_MAX_SIZE);
 
     getVendorConfigPath(vendor_config_path, sizeof(vendor_config_path));
 
@@ -1631,9 +1632,10 @@ int ResourceManager::init_audio()
     strlcat(rmngr_xml_file, XML_FILE_EXT, XML_PATH_MAX_LENGTH);
     strlcat(rmngr_xml_file_wo_variant, XML_FILE_EXT, XML_PATH_MAX_LENGTH);
     strlcat(mixer_xml_file_wo_variant, XML_FILE_EXT, XML_PATH_MAX_LENGTH);
+    PAL_INFO(LOG_TAG, "resource manager path %s", rmngr_xml_file);
 
     audio_route = audio_route_init(snd_hw_card, mixer_xml_file);
-    PAL_INFO(LOG_TAG, "audio route %pK, mixer path %s", audio_route, mixer_xml_file);
+    PAL_INFO(LOG_TAG, "audio route %pK, mixer path %s file_name_extn:%s", audio_route, mixer_xml_file, file_name_extn);
     if (!audio_route) {
         PAL_ERR(LOG_TAG, "audio route init failed trying with mixer without variant name");
 	audio_route = audio_route_init(snd_hw_card, mixer_xml_file_wo_variant);

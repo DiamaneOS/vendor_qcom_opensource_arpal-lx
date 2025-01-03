@@ -86,6 +86,7 @@
 #else
 #define USECASE_XML_FILE "/vendor/etc/usecaseKvManager.xml"
 #endif
+#define USECASE_FPS_XML_FILE "/vendor/etc/usecaseKvManager_fps.xml"
 
 #define PARAM_ID_CHMIXER_COEFF 0x0800101F
 #define CUSTOM_STEREO_NUM_OUT_CH 0x0002
@@ -1332,8 +1333,8 @@ int PayloadBuilder::init()
     all_devices.clear();
     all_devicepps.clear();
 
-    PAL_INFO(LOG_TAG, "XML parsing started %s", USECASE_XML_FILE);
-    file = fopen(USECASE_XML_FILE, "r");
+    PAL_INFO(LOG_TAG, "XML parsing started %s", USECASE_FPS_XML_FILE);
+    file = fopen(USECASE_FPS_XML_FILE, "r");
     if (!file) {
         PAL_ERR(LOG_TAG, "Failed to open xml");
         ret = -EINVAL;

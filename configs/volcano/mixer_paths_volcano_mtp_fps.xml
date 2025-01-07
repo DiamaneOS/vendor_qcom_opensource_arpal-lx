@@ -106,6 +106,8 @@
     <ctl name="AUX_RDAC Switch" value="0" />
     <ctl name="RX_FIR Filter" value="OFF" />
     <ctl name="RX_EAR Mode" value="OFF" />
+    <ctl name="aw_dev_0_switch" value="Disable" />
+    <ctl name="aw_dev_1_switch" value="Disable" />
 
     <!-- TX Controls -->
     <ctl name="VA_AIF1_CAP Mixer DEC0" value="0" />
@@ -278,6 +280,25 @@
 
 
     <!-- These are actual sound device specific mixer settings -->
+    <path name="amic1">
+        <ctl name="TX DEC0 MUX" value="SWR_MIC" />
+        <ctl name="TX SMIC MUX0" value="SWR_MIC4" />
+        <ctl name="TX_DEC0 Volume" value="84" />
+        <ctl name="TX_AIF1_CAP Mixer DEC0" value="1" />
+        <ctl name="ADC1 ChMap" value="SWRM_TX2_CH1" />
+        <ctl name="ADC1 MUX" value="CH1_AMIC1" />
+        <ctl name="AMIC1_MIXER Switch" value="1" />
+    </path>
+    <path name="amic3">
+        <ctl name="TX DEC1 MUX" value="SWR_MIC" />
+        <ctl name="TX SMIC MUX1" value="SWR_MIC5" />
+        <ctl name="TX_DEC1 Volume" value="84" />
+        <ctl name="TX_AIF1_CAP Mixer DEC1" value="1" />
+        <ctl name="ADC2 ChMap" value="SWRM_TX2_CH2" />
+        <ctl name="ADC2 MUX" value="CH2_AMIC3" />
+        <ctl name="AMIC3_MIXER Switch" value="1" />
+    </path>
+
     <path name="amic2">
         <ctl name="TX DEC0 MUX" value="SWR_MIC" />
         <ctl name="TX SMIC MUX0" value="SWR_MIC4" />
@@ -476,11 +497,11 @@
     </path>
 
     <path name="speaker-mic">
-        <path name="dmic1" />
+        <path name="amic3" />
     </path>
 
     <path name="speaker-mic-liquid">
-        <path name="dmic1" />
+        <path name="amic3" />
     </path>
 
     <path name="speaker-mic-sbc">
@@ -566,15 +587,14 @@
     </path>-->
     <path name="handset">
         <ctl name="aw_dev_0_switch" value="Enable" />
-        <ctl name="aw_dev_1_switch" value="Enable" />
     </path>
 
     <path name="handset-mic">
-        <path name="dmic2" />
+        <path name="amic1" />
     </path>
 
     <path name="handset-mic-unprocessed">
-        <path name="dmic2" />
+        <path name="amic1" />
         <ctl name="TX_DEC2 Volume" value="105" />
     </path>
 

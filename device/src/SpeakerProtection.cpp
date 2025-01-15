@@ -70,6 +70,7 @@
 #include "SessionAlsaUtils.h"
 #include "kvh2xml.h"
 #include <agm/agm_api.h>
+#include "aw_ar_api.h"
 
 #include<fstream>
 #include<sstream>
@@ -566,6 +567,10 @@ int SpeakerProtection::spkrStartCalibration()
         goto exit;
     }
 
+    // awinic add for sp begin
+    if (isSpeakerProtectionWsaAmp) {
+    // awinic add for sp end
+
     // Enable VI module
     switch(numberOfChannels) {
         case 1 :
@@ -747,6 +752,10 @@ int SpeakerProtection::spkrStartCalibration()
             goto free_fe;
         }
     }
+
+    // awinic add for sp begin
+    } //add this before enableDevice
+    // awinic add for sp end
 
     enableDevice(audioRoute, mSndDeviceName_vi);
     txPcm = pcm_open(rm->getVirtualSndCard(), pcmDevIdsTx.at(0), flags, &config);
@@ -1232,6 +1241,11 @@ SpeakerProtection::SpeakerProtection(struct pal_device *device,
 
     isSpkrInUse = false;
 
+    // awinic add for sp begin
+    isSpeakerProtectionWsaAmp = false;
+    PAL_DBG(LOG_TAG, "set isSpeakerProtectionWsaAmp:%d",isSpeakerProtectionWsaAmp);
+    // awinic add for sp end
+
     calibrationCallbackStatus = 0;
     mDspCallbackRcvd = false;
 
@@ -1267,11 +1281,23 @@ SpeakerProtection::SpeakerProtection(struct pal_device *device,
         goto exit;
     }
 
-    fp = fopen(PAL_SP_TEMP_PATH, "rb");
-    if (fp) {
-        PAL_DBG(LOG_TAG, "Cal File exists. Reading from it");
-        spkrCalState = SPKR_CALIBRATED;
+    // awinic add for sp begin
+    if (isSpeakerProtectionWsaAmp) {  //add this before fopen PAL_SP_TEMP_PATH
+    // awinic add for sp end
+	    fp = fopen(PAL_SP_TEMP_PATH, "rb");
+	    if (fp) {
+	        PAL_DBG(LOG_TAG, "Cal File exists. Reading from it");
+	        spkrCalState = SPKR_CALIBRATED;
+	    }
+	    else {
+	        PAL_DBG(LOG_TAG, "Calibration Not done");
+	        mCalThread = std::thread(&SpeakerProtection::spkrCalibrationThread,
+	                            this);
+	        calThrdCreated = true;
+	    }
+    // awinic add for sp begin
     }
+    // awinic add for sp end
     else {
         PAL_DBG(LOG_TAG, "Calibration Not done");
         mCalThread = std::thread(&SpeakerProtection::spkrCalibrationThread,
@@ -1652,6 +1678,9 @@ int SpeakerProtection::viTxSetupThreadLoop()
     flags = PCM_IN;
 
     //Setting the mode of VI module
+    // awinic add for sp begin
+    if (isSpeakerProtectionWsaAmp) {
+    // awinic add for sp end
     modeConfg.num_speakers = vi_device.channels;
     switch (rm->mSpkrProtModeValue.operationMode) {
         case PAL_SP_MODE_FACTORY_TEST:
@@ -1829,7 +1858,9 @@ int SpeakerProtection::viTxSetupThreadLoop()
             goto free_fe;
         }
     }
-
+    // awinic add for sp begin
+    } // add this before pcm_open
+    // awinic add for sp end
     txPcm = pcm_open(rm->getVirtualSndCard(), pcmDevIdTx.at(0), flags, &config);
     if (!txPcm) {
         PAL_ERR(LOG_TAG, "txPcm open failed");
@@ -1844,6 +1875,8 @@ int SpeakerProtection::viTxSetupThreadLoop()
     PAL_DBG(LOG_TAG, "registering DC detection event for VI module");
     payloadSize = sizeof(struct agm_event_reg_cfg);
 
+    // awinic add for sp begin
+#if 0
     /* Register for EVENT_ID_SPv5_SPEAKER_DIAGNOSTICS. */
     event_cfg.event_id = EVENT_ID_SPv5_SPEAKER_DIAGNOSTICS;
     event_cfg.event_config_payload_size = 0;
@@ -1859,6 +1892,8 @@ int SpeakerProtection::viTxSetupThreadLoop()
         if (ret != 0)
             PAL_ERR(LOG_TAG, "Failed to register callback to rm");
     }
+#endif
+    // awinic add for sp end
 
     enableDevice(audioRoute, mSndDeviceName_vi);
     PAL_DBG(LOG_TAG, "pcm start for TX");
@@ -1993,7 +2028,9 @@ int32_t SpeakerProtection::spkrProtProcessingMode(bool flag)
     PAL_DBG(LOG_TAG, "get the audio route %s", mSndDeviceName_vi);
 
     if (flag) {
-        if (spkrCalState == SPKR_CALIB_IN_PROGRESS) {
+        // awinic add for sp begin
+        if (isSpeakerProtectionWsaAmp && spkrCalState == SPKR_CALIB_IN_PROGRESS) {
+        // awinic add for sp end
             // Close the Graphs
             cv.notify_all();
             // Wait for cleanup
@@ -2040,6 +2077,9 @@ int32_t SpeakerProtection::spkrProtProcessingMode(bool flag)
         calVector.clear();
 
         // Setting up SP mode
+        // awinic add for sp begin
+        if (isSpeakerProtectionWsaAmp) { //add this before getBackendName
+        // awinic add for sp end
         rm->getBackendName(mDeviceAttr.id, backEndNameRx);
         if (!strlen(backEndNameRx.c_str())) {
             PAL_ERR(LOG_TAG, "Failed to obtain rx backend name for %d", mDeviceAttr.id);
@@ -2092,6 +2132,31 @@ int32_t SpeakerProtection::spkrProtProcessingMode(bool flag)
                 PAL_ERR(LOG_TAG," updateCustomPayload Failed\n");
             }
         }
+        // awinic add for sp begin
+        } //add this before enableDevice
+        // awinic add for sp end
+
+        /*awinic add start*/
+        struct aw_dev_info dev_info;
+        int cali_re[8] = { 0 };
+
+        ret = aw_audioreach_get_re_from_file(cali_re, numberOfChannels);
+        if (ret < 0) {
+            PAL_ERR(LOG_TAG, "cali_re get re from file failed");
+            goto exit;
+        }
+
+        dev_info.virt_mixer = virtMixer;
+        dev_info.hw_mixer = hwMixer;
+
+        ret = aw_audioreach_dsp_set_re(&dev_info, cali_re, numberOfChannels);
+        if (ret < 0) {
+            PAL_ERR(LOG_TAG, "cali_re Awinic set cali re failed");
+            goto exit;
+        }
+
+        PAL_INFO(LOG_TAG, "Awinic set cali re success");
+        /*awinic add end*/
 
         switch(ResourceManager::cpsMode)
         {
@@ -2513,7 +2578,9 @@ int SpeakerProtection::start()
 
     if (ResourceManager::isVIRecordStarted) {
         PAL_DBG(LOG_TAG, "record running so just update SP payload");
-        updateSPcustomPayload();
+        // awinic add for sp
+        if (isSpeakerProtectionWsaAmp)
+            updateSPcustomPayload();
     }
     else {
         spkrProtProcessingMode(true);
@@ -2847,6 +2914,9 @@ void SpeakerFeedback::updateVIcustomPayload()
     memset(&r0t0Array, 0, sizeof(struct vi_r0t0_cfg_t) * numSpeaker);
 
     // Setting the mode of VI module
+    // awinic add for sp begin
+    if (isSpeakerFeedbackWsaAmp) {
+    // awinic add for sp end
     modeConfg.num_speakers = numSpeaker;
     modeConfg.th_operation_mode = NORMAL_MODE;
     modeConfg.th_quick_calib_flag = 0;
@@ -2914,6 +2984,9 @@ void SpeakerFeedback::updateVIcustomPayload()
             PAL_ERR(LOG_TAG," updateCustomPayload Failed\n");
         }
     }
+    // awinic add for sp begin
+    } // disallow "Setting the mode of VI module"
+    // awinic add for sp end
 exit:
     if(builder) {
        delete builder;
@@ -2930,7 +3003,10 @@ SpeakerFeedback::SpeakerFeedback(struct pal_device *device,
     memset(&mDeviceAttr, 0, sizeof(struct pal_device));
     memcpy(&mDeviceAttr, device, sizeof(struct pal_device));
     rm = Rm;
-
+    // awinic add for sp begin
+    isSpeakerFeedbackWsaAmp = false;
+    PAL_DBG(LOG_TAG, "set isSpeakerFeedbackWsaAmp:%d",isSpeakerFeedbackWsaAmp);
+    // awinic add for sp end
 
     rm->getDeviceInfo(mDeviceAttr.id, PAL_STREAM_PROXY, mDeviceAttr.custom_config.custom_key, &devinfo);
     numSpeaker = devinfo.channels;
@@ -2945,7 +3021,9 @@ int32_t SpeakerFeedback::start()
     ResourceManager::isVIRecordStarted = true;
     // Do the customPayload configuration for VI path and call the Device::start
     PAL_DBG(LOG_TAG," Feedback start\n");
-    if (rm->isSpeakerProtectionEnabled)
+    // awinic add for sp begin
+    if (rm->isSpeakerProtectionEnabled && isSpeakerFeedbackWsaAmp)
+    // awinic add for sp end
         updateVIcustomPayload();
 
     Device::start();

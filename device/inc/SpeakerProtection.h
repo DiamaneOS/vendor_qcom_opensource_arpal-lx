@@ -142,6 +142,9 @@ protected :
     spkr_prot_proc_state spkrProcessingState;
     int *spkerTempList;
     static bool isSpkrInUse;
+    // awinic add for sp begin
+    bool isSpeakerProtectionWsaAmp;
+    // awinic add for sp end
     static bool calThrdCreated;
     static bool isDynamicCalTriggered;
     static bool viTxSetupThrdCreated;
@@ -216,6 +219,9 @@ class SpeakerFeedback : public Device
     struct pal_device mDeviceAttr;
     static std::shared_ptr<Device> obj;
     static int numSpeaker;
+    // awinic add for sp begin
+    bool isSpeakerFeedbackWsaAmp;
+    // awinic add for sp end
     public :
     int32_t start();
     int32_t stop();

@@ -41,6 +41,9 @@ ifeq ($(TARGET_BOARD_PLATFORM), volcano)
 LOCAL_CFLAGS        += -DWSA_V883X_ADDR
 endif
 
+LOCAL_CFLAGS += -DAW_BACK_END_NAME=\"MI2S-LPAIF_WSA-RX-PRIMARY\"
+LOCAL_CFLAGS += -DAW_PCM_NAME_LIST=\"PCM100,PCM101,PCM102,PCM103,PCM104,COMPRESS105,VOICEMMODE1p,VOICEMMODE2p,VOICEMMODE1c,VOICEMMODE2c,PCM110,PCM111,PCM112,PCM113,PCM114,PCM115,PCM116,PCM117,PCM118,PCM119,PCM120,PCM121,PCM122,PCM123,PCM124,PCM125,PCM126\"
+
 LOCAL_C_INCLUDES := \
     $(LOCAL_PATH)/stream/inc \
     $(LOCAL_PATH)/device/inc \
@@ -135,6 +138,15 @@ LOCAL_SRC_FILES := \
     utils/src/MetadataParser.cpp \
     utils/src/MemLogBuilder.cpp
 
+
+LOCAL_C_INCLUDES += $(LOCAL_PATH)/awinic_ar/inc
+LOCAL_SRC_FILES += \
+    awinic_ar/src/aw_ar_cali.c \
+    awinic_ar/src/aw_ar_dsp.cpp \
+    awinic_ar/src/aw_ar_kmsg.c \
+    awinic_ar/src/aw_ar_monitor.c \
+    awinic_ar/src/aw_ar_cali_exe.c
+
 LOCAL_HEADER_LIBRARIES := \
     libarpal_headers \
     libspf-headers \
@@ -198,6 +210,39 @@ LOCAL_SHARED_LIBRARIES += libcutils liblog
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/utils/inc
 
 include $(BUILD_SHARED_LIBRARY)
+
+#-------------------------------------------
+#   Awinic aw882xx calibration exec
+#-------------------------------------------
+include $(CLEAR_VARS)
+LOCAL_USE_VNDK := true
+LOCAL_VENDOR_MODULE := true
+LOCAL_NOSANITIZE := cfi
+LOCAL_C_INCLUDES := \
+    $(LOCAL_PATH)/awinic_ar/inc
+
+LOCAL_SHARED_LIBRARIES += libtinyalsa liblog libcutils
+LOCAL_CFLAGS += -Wno-tautological-compare
+LOCAL_CFLAGS += -Wno-macro-redefined
+
+LOCAL_SRC_FILES  := /awinic_ar/src/aw_ar_cali.c \
+                    /awinic_ar/src/aw_ar_cali_exe.c \
+                    /awinic_ar/src/aw_ar_dsp.cpp \
+                    /awinic_ar/src/aw_ar_kmsg.c
+
+LOCAL_CFLAGS += -DAW_BACK_END_NAME=\"MI2S-LPAIF_WSA-RX-PRIMARY\"
+
+# -------------------------------------------------------------
+# The AW_PCM_NAME_LIST field is platform-dependent.
+# Refer to the name value supporting the playback attribute in all pcm-device fields
+# in the card-defs.xml file
+# -------------------------------------------------------------
+LOCAL_CFLAGS += -DAW_PCM_NAME_LIST=\"PCM100,PCM101,PCM102,PCM103,PCM104,COMPRESS105,VOICEMMODE1p,VOICEMMODE2p,VOICEMMODE1c,VOICEMMODE2c,PCM110,PCM111,PCM112,PCM113,PCM114,PCM115,PCM116,PCM117,PCM118,PCM119,PCM120,PCM121,PCM122,PCM123,PCM124,PCM125,PCM126\"
+
+LOCAL_MODULE               := aw882xx_cali
+LOCAL_MODULE_OWNER         := awinic
+LOCAL_MODULE_TAGS          := optional
+include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
 LOCAL_USE_VNDK := true

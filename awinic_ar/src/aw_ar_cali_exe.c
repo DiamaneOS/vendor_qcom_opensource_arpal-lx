@@ -368,6 +368,9 @@ static int aw_ar_cali_exe_cali_f0(struct aw882xx *aw882xx)
     int cali_f0[AW_DEV_CH_MAX] = { 0 };
     int i = 0;
 
+    //while cali_f0 with while noise generate
+    aw_audioreach_set_noise_en(true);
+
     ret = aw_audioreach_dsp_read_f0(&aw882xx->dev_info,
                                 cali_f0, aw882xx->num_or_index);
     if (ret < 0) {

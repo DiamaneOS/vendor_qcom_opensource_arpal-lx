@@ -598,7 +598,7 @@
             <usecase>
                 <name>PAL_STREAM_VOICE_CALL</name>
                 <channels>1</channels>
-                <snd_device_name>vi-feedback-mono-2</snd_device_name>
+                <snd_device_name>vi-feedback</snd_device_name>
             </usecase>
         </in-device>
         <in-device>
@@ -765,8 +765,14 @@
             <usecase>
                 <name>PAL_STREAM_VOICE_CALL</name>
                 <priority>1</priority>
+                <channels>2</channels>
+                <snd_device_name>speaker</snd_device_name>
+            </usecase>
+            <usecase>
+                <name>PAL_STREAM_VOICE_CALL</name>
+                <priority>1</priority>
                 <channels>1</channels>
-                <snd_device_name>speaker-mono-2</snd_device_name>
+                <snd_device_name>speaker</snd_device_name>
             </usecase>
             <usecase>
                 <name>PAL_STREAM_VOICE_CALL</name>
@@ -806,9 +812,11 @@
             <!-- To enable external EC reference the flag extec_ref_enabled must be added as 1 -->
             <ext_ec_ref_enabled>0</ext_ec_ref_enabled>
             <samplerate>48000</samplerate>
+            <bit_width>32</bit_width>
             <fractional_sr>0</fractional_sr>
             <snd_device_name>handset</snd_device_name>
-            <handset_protection_enabled>1</handset_protection_enabled>
+            <handset_protection_enabled>0</handset_protection_enabled>
+            <supported_bit_format>PAL_AUDIO_FMT_PCM_S32_LE</supported_bit_format>
           <usecase>
               <name>PAL_STREAM_VOICE_CALL</name>
               <priority>1</priority>

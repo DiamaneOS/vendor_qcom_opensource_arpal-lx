@@ -521,7 +521,12 @@
     </path>
 
     <path name="voice-speaker-prot">
-        <path name="voice-speaker" />
+        <ctl name="aw_dev_0_switch" value="Enable" />
+        <ctl name="aw_dev_1_switch" value="Enable" />
+        <ctl name="aw_dev_0_prof" value="voice" />
+        <ctl name="aw_dev_1_prof" value="voice" />
+        <ctl name="WSA_RX0 Digital Volume" value="84" />
+        <ctl name="WSA_RX1 Digital Volume" value="84" />
     </path>
 
     <path name="voice-speaker-protected">
@@ -745,9 +750,10 @@
         <path name="handset" />
     </path>
     <path name="voice-speaker">
+        <ctl name="aw_dev_0_switch" value="Enable" />
+        <ctl name="aw_dev_1_switch" value="Enable" />
         <ctl name="aw_dev_0_prof" value="voice" />
         <ctl name="aw_dev_1_prof" value="voice" />
-        <path name="speaker" />
     </path>
 
     <path name="voice-speaker-stereo">

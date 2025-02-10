@@ -766,13 +766,13 @@
                 <name>PAL_STREAM_VOICE_CALL</name>
                 <priority>1</priority>
                 <channels>2</channels>
-                <snd_device_name>speaker</snd_device_name>
+                <snd_device_name>voice-speaker</snd_device_name>
             </usecase>
             <usecase>
                 <name>PAL_STREAM_VOICE_CALL</name>
                 <priority>1</priority>
                 <channels>1</channels>
-                <snd_device_name>speaker</snd_device_name>
+                <snd_device_name>voice-speaker</snd_device_name>
             </usecase>
             <usecase>
                 <name>PAL_STREAM_VOICE_CALL</name>
@@ -785,6 +785,7 @@
             <usecase>
                 <name>PAL_STREAM_VOIP_RX</name>
                 <priority>2</priority>
+                <snd_device_name>voice-speaker</snd_device_name>
             </usecase>
             <!--
                  Playback/Recording streams have a default priority of 3

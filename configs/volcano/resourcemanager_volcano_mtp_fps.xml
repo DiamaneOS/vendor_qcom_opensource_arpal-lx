@@ -191,6 +191,14 @@
                     <channels>4</channels>
                     <snd_device_name>unprocessed-hdr-mic-inverted-portrait</snd_device_name>
                 </custom-config>
+                <custom-config key="main">
+                    <channels>1</channels>
+                    <snd_device_name>amic1</snd_device_name>
+                </custom-config>
+                <custom-config key="sub">
+                    <channels>1</channels>
+                    <snd_device_name>amic3</snd_device_name>
+                </custom-config>
             </usecase>
         <!--Uncomment these lines instead of above lines if needing to enable EC per custom key
             <usecase>

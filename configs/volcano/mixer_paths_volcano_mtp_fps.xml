@@ -211,11 +211,11 @@
     <ctl name="HPHL Volume" value="20" />
     <ctl name="HPHR Volume" value="20" />
 
-    <ctl name="TX_DEC0 Volume" value="102" />
-    <ctl name="TX_DEC1 Volume" value="102" />
-    <ctl name="TX_DEC2 Volume" value="102" />
-    <ctl name="TX_DEC3 Volume" value="102" />
-    <ctl name="TX_DEC4 Volume" value="102" />
+    <ctl name="TX_DEC0 Volume" value="84" />
+    <ctl name="TX_DEC1 Volume" value="84" />
+    <ctl name="TX_DEC2 Volume" value="84" />
+    <ctl name="TX_DEC3 Volume" value="84" />
+    <ctl name="TX_DEC4 Volume" value="84" />
     <ctl name="TX_DEC5 Volume" value="84" />
     <ctl name="TX_DEC6 Volume" value="84" />
     <ctl name="TX_DEC7 Volume" value="84" />
@@ -291,6 +291,7 @@
         <ctl name="TX0 MODE" value="ADC_LP" />
         <ctl name="ADC1 MUX" value="CH1_AMIC1" />
         <ctl name="AMIC1_MIXER Switch" value="1" />
+        <ctl name="TX_DEC1 Volume" value="84" />
     </path>
 
     <path name="amic3">
@@ -302,6 +303,7 @@
         <ctl name="ADC2_BCS Disable" value="1" />
         <ctl name="ADC2 MUX" value="CH2_AMIC3" />
         <ctl name="AMIC3_MIXER Switch" value="1" />
+        <ctl name="TX_DEC2 Volume" value="84" />
     </path>
 
     <path name="amic2">
@@ -613,7 +615,7 @@
 
     <path name="handset-mic-unprocessed">
         <path name="amic1" />
-        <ctl name="TX_DEC2 Volume" value="105" />
+        <ctl name="TX_DEC2 Volume" value="84" />
     </path>
 
     <path name="ultrasound-handset">
@@ -1090,12 +1092,18 @@
         <ctl name="IIR0 INP0 MUX" value="DEC2" />
     </path>
 
-    <path name="handset-stereo-dmic-ef">
-        <path name="handset-dmic-endfire" />
+    <path name="handset-dual-mic-stereo">
+        <path name="amic1" />
+        <path name="amic3" />
     </path>
 
-    <path name="speaker-stereo-dmic-ef">
-        <path name="speaker-dmic-endfire" />
+    <path name="speaker-dual-mic-stereo">
+        <path name="amic1" />
+        <path name="amic3" />
+    </path>
+
+    <path name="speaker-bootom-mic">
+        <path name="amic1" />
     </path>
 
     <path name="voice-dmic-ef-tmus">
@@ -1242,17 +1250,17 @@
 
     <path name="unprocessed-hdr-mic-landscape">
         <path name="handset-dual-dmic-quad-dec" />
-        <ctl name="TX_DEC1 Volume" value="108" />
+        <ctl name="TX_DEC1 Volume" value="84" />
         <ctl name="TX_DEC2 Volume" value="84" />
-        <ctl name="TX_DEC3 Volume" value="108" />
+        <ctl name="TX_DEC3 Volume" value="84" />
         <ctl name="TX_DEC4 Volume" value="84" />
     </path>
 
     <path name="unprocessed-hdr-mic-inverted-landscape">
         <path name="handset-dual-dmic-quad-dec-reverse" />
-        <ctl name="TX_DEC1 Volume" value="108" />
+        <ctl name="TX_DEC1 Volume" value="84" />
         <ctl name="TX_DEC2 Volume" value="84" />
-        <ctl name="TX_DEC3 Volume" value="108" />
+        <ctl name="TX_DEC3 Volume" value="84" />
         <ctl name="TX_DEC4 Volume" value="84" />
     </path>
 
@@ -1269,17 +1277,17 @@
 
     <path name="unprocessed-hdr-mic-portrait">
         <path name="handset-single-dmic-quad-dec" />
-        <ctl name="TX_DEC1 Volume" value="108" />
+        <ctl name="TX_DEC1 Volume" value="84" />
         <ctl name="TX_DEC2 Volume" value="84" />
-        <ctl name="TX_DEC3 Volume" value="108" />
+        <ctl name="TX_DEC3 Volume" value="84" />
         <ctl name="TX_DEC4 Volume" value="84" />
     </path>
 
     <path name="unprocessed-hdr-mic-inverted-portrait">
         <path name="handset-single-dmic-quad-dec" />
-        <ctl name="TX_DEC1 Volume" value="108" />
+        <ctl name="TX_DEC1 Volume" value="84" />
         <ctl name="TX_DEC2 Volume" value="84" />
-        <ctl name="TX_DEC3 Volume" value="108" />
+        <ctl name="TX_DEC3 Volume" value="84" />
         <ctl name="TX_DEC4 Volume" value="84" />
     </path>
 

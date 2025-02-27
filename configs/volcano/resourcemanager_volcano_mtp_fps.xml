@@ -199,6 +199,10 @@
                     <channels>1</channels>
                     <snd_device_name>amic3</snd_device_name>
                 </custom-config>
+                <custom-config key="dual-mic">
+                    <channels>2</channels>
+                    <snd_device_name>handset-dual-mic-stereo</snd_device_name>
+                </custom-config>
             </usecase>
         <!--Uncomment these lines instead of above lines if needing to enable EC per custom key
             <usecase>
@@ -232,13 +236,18 @@
                 <name>PAL_STREAM_VOIP_TX</name>
                 <priority>2</priority>
                 <ec_enable>1</ec_enable>
+                <channels>2</channels>
+                <snd_device_name>handset-dual-mic-stereo</snd_device_name>
             </usecase>
+
             <usecase>
                 <name>PAL_STREAM_VOICE_CALL</name>
                 <priority>1</priority>
                 <sidetone_mode>HW</sidetone_mode>
                 <bit_width>16</bit_width>
                 <ec_enable>1</ec_enable>
+                <channels>2</channels>
+                <snd_device_name>handset-dual-mic-stereo</snd_device_name>
                 <custom-config key="nn-sm">
                     <channels>1</channels>
                     <snd_device_name>handset-mic</snd_device_name>
@@ -322,6 +331,10 @@
                     <channels>4</channels>
                     <snd_device_name>unprocessed-hdr-mic-inverted-portrait</snd_device_name>
                 </custom-config>
+                <custom-config key="dual-mic">
+                    <channels>2</channels>
+                    <snd_device_name>speaker-dual-mic-stereo</snd_device_name>
+                </custom-config>
             </usecase>
         <!--Uncomment these lines instead of above lines if needing to enable EC per custom key
             <usecase>
@@ -355,6 +368,8 @@
                 <name>PAL_STREAM_VOIP_TX</name>
                 <priority>2</priority>
                 <ec_enable>1</ec_enable>
+                <channels>1</channels>
+                <snd_device_name>speaker-bootom-mic</snd_device_name>
             </usecase>
             <usecase>
                 <name>PAL_STREAM_VOICE_CALL</name>
@@ -362,6 +377,8 @@
                 <sidetone_mode>OFF</sidetone_mode>
                 <bit_width>16</bit_width>
                 <ec_enable>1</ec_enable>
+                <channels>1</channels>
+                <snd_device_name>speaker-bootom-mic</snd_device_name>
                 <custom-config key="nn-sm">
                     <channels>1</channels>
                     <snd_device_name>speaker-mic</snd_device_name>

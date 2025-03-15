@@ -3711,6 +3711,24 @@ exit:
     return status;
 }
 
+
+int PayloadBuilder::populateAwCalKeyVector(Stream *s, std::vector <std::pair<int,int>> &ckv, int tag) {
+    std::shared_ptr<ResourceManager> rm = ResourceManager::getInstance();
+    PAL_INFO(LOG_TAG, "Awinic populateAwCalKeyVector enter");
+
+    /* update AwSpkMode */
+    rm->setAwinicSpkMode();
+    switch (static_cast<uint32_t>(tag)) {
+        case AW_SPK_MODE_ENABLE :
+            PAL_INFO(LOG_TAG,"Awinic set aw spk mode %d", rm->AwSpkMode);
+            ckv.push_back(std::make_pair(AW_SPK_MODE, rm->AwSpkMode));
+            break;
+        default:
+            break;
+    }
+    return 0;
+}
+
 int PayloadBuilder::populateTagKeyVector(Stream *s, std::vector <std::pair<int,int>> &tkv, int tag, uint32_t* gsltag)
 {
     int status = 0;

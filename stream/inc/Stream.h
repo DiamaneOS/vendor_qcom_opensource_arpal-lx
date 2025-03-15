@@ -151,6 +151,7 @@ typedef enum {
 #define HAPTICS_VI_ENABLE 49
 #define HAPTICS_PROT_ENABLE 50
 #define CRS_CALL_VOLUME 51
+#define AW_SPK_MODE_ENABLE 78
 
 /* This sleep is added to give time to kernel and
  * spf to recover from SSR so that audio-hal will

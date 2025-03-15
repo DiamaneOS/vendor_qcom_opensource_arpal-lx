@@ -728,6 +728,9 @@ public:
     static cl_set_boost_state_t cl_set_boost_state;
     static std::shared_ptr<group_dev_config_t> activeGroupDevConfig;
     static std::shared_ptr<group_dev_config_t> currentGroupDevConfig;
+    int cur_audio_mode;
+    uint32_t AwSpkMode = 1;
+    void setAwinicSpkMode(void);
 
     static void *vui_dmgr_lib_handle;
     static vui_dmgr_init_t vui_dmgr_init;

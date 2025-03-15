@@ -1399,6 +1399,15 @@ int32_t pal_gef_rw_param_acdb(uint32_t param_id __unused, void *param_payload,
     return status;
 }
 
+void pal_set_audio_mode(int audio_mode)
+{
+    std::shared_ptr<ResourceManager> rm = NULL;
+    rm = ResourceManager::getInstance();
+
+    PAL_DBG(LOG_TAG, "pal_set_audio_mode: %d", audio_mode);
+    rm->cur_audio_mode = audio_mode;
+}
+
 int32_t pal_stream_get_buffer_size(pal_stream_handle_t *stream_handle,
                                    size_t *in_buffer, size_t *out_buffer){
     PAL_ERR(LOG_TAG, "error: API pal_stream_get_buffer_size not implemented");

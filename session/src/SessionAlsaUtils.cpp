@@ -529,6 +529,8 @@ int SessionAlsaUtils::open(Stream * streamHandle, std::shared_ptr<ResourceManage
             status = 0; /**< ignore device PP CKV failures */
         }
 
+        builder->populateAwCalKeyVector(streamHandle, devicePPCKV, AW_SPK_MODE_ENABLE);
+
         status = builder->populateStreamDeviceKV(streamHandle, be->first, streamDeviceKV);
         if (status) {
             PAL_VERBOSE(LOG_TAG, "get stream device KV failed %d", status);
@@ -2704,6 +2706,8 @@ int SessionAlsaUtils::setupSessionDevice(Stream* streamHandle, pal_stream_type_t
         PAL_ERR(LOG_TAG, "populateDevicePP Ckv failed %d", status);
         status = 0; /**< ignore device PP CKV failures */
     }
+
+    builder->populateAwCalKeyVector(streamHandle, devicePPCKV, AW_SPK_MODE_ENABLE);
 
     if (streamDeviceKV.size() > 0 || devicePPCKV.size() > 0) {
         SessionAlsaUtils::getAgmMetaData(streamDeviceKV, devicePPCKV,

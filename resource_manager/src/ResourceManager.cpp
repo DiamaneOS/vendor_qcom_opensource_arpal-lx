@@ -14104,6 +14104,28 @@ exit:
     return ret;
 }
 
+void ResourceManager::setAwinicSpkMode(void)
+{
+    PAL_INFO(LOG_TAG, "setAwinicSpkMode cur_audio_mode，%d",cur_audio_mode);
+    switch(cur_audio_mode) {
+        case AUDIO_MODE_NORMAL:
+            AwSpkMode = 1; //Music profile
+            break;
+        case AUDIO_MODE_RINGTONE:
+            AwSpkMode = 3; //Ring profile
+            break;
+        case AUDIO_MODE_IN_CALL:
+        case AUDIO_MODE_IN_COMMUNICATION:
+            AwSpkMode = 2; //Voice profie
+            break;
+        default:
+            AwSpkMode = 1; //Music profile
+            break;
+    }
+    if (!isSpeakerProtectionEnabled)
+            AwSpkMode = 0; //Bypass profile, only factory
+}
+
 bool ResourceManager::checkDeviceSwitchForHaptics(struct pal_device *inDevAttr,
                                                   struct pal_device *curDevAttr) {
     std::vector <Stream *> activeHapticsStreams;

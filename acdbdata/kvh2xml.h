@@ -87,6 +87,7 @@ enum AllKeyIds{
     USB_VENDOR_ID         = 0xE6000000,    /**< @h2xmle_name{USB_Vendor_Id} */
     TAG_KEY_ULTRASOUND_GAIN = 0xE7000000,   /**< @h2xmle_name{UltrasoundGain} */
     PROXY_RX_TYPE         = 0xE7010000,   /**< @h2xmle_name{ProxyRxType} */
+    AW_SPK_MODE           = 0xE8000000,   /**< @h2xmle_name{Aw_Spk_Mode} */
 };
 
 /**
@@ -307,6 +308,17 @@ enum Key_StreamPP_TX {
     STREAMPP_TX_DEFAULT = 0xB0000001, /**< @h2xmle_name {StreamPP_Tx_Default} @h2xmlk_description {Default PP Capture}*/
 };
 
+/**
+    @h2xmlk_key {AW_SPK_MODE}
+    @h2xmlk_description {Aw_Spk_Mode}
+*/
+enum Key_Aw_Spk_Mode {
+    Bypass = 0,  /**< @h2xmle_name {Bypass_Mode}*/
+    Music  = 1,  /**< @h2xmle_name {Music_Mode}*/
+    Voice  = 2,  /**< @h2xmle_name {Voice_Mode}*/
+    Ring   = 3,  /**< @h2xmle_name {Ringtone_Mode}*/
+    Factory= 4,  /**< @h2xmle_name {Factory_Mode}*/
+};
 
 /**
     @h2xmlk_key {VOLUME}
@@ -865,6 +877,7 @@ enum Cal_Keys {
     ck_hapticsdev = HAPTICS_PRO_DEV_MAP,
     ck_hapticsvi = HAPTICS_PRO_VI_MAP,
     ck_usb_vendor_id = USB_VENDOR_ID,
+    ck_aw_spk_mode  = AW_SPK_MODE,
 };
 
 

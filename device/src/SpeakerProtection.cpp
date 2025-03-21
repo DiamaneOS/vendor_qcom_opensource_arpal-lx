@@ -1298,12 +1298,6 @@ SpeakerProtection::SpeakerProtection(struct pal_device *device,
     // awinic add for sp begin
     }
     // awinic add for sp end
-    else {
-        PAL_DBG(LOG_TAG, "Calibration Not done");
-        mCalThread = std::thread(&SpeakerProtection::spkrCalibrationThread,
-                            this);
-        calThrdCreated = true;
-    }
 exit:
     PAL_DBG(LOG_TAG, "exit. calThrdCreated :%d", calThrdCreated);
 }

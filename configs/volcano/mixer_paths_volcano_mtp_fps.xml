@@ -108,9 +108,10 @@
     <ctl name="RX_EAR Mode" value="OFF" />
     <ctl name="aw_dev_0_switch" value="Disable" />
     <ctl name="aw_dev_1_switch" value="Disable" />
+    <ctl name="aw_dev_2_switch" value="Disable" />
     <ctl name="aw_dev_0_prof" value="music" />
     <ctl name="aw_dev_1_prof" value="music" />
-    <ctl name="HAC_PA Switch" value="0"/>
+    <ctl name="aw_dev_2_prof" value="music" />
 
     <!-- TX Controls -->
     <ctl name="VA_AIF1_CAP Mixer DEC0" value="0" />
@@ -730,7 +731,7 @@
         <path name="handset" />
     </path>
 
-    <path name="voice-hac">
+    <!-- <path name="voice-hac">
         <ctl name="RX_MACRO RX2 MUX" value="AIF2_PB"/>
         <ctl name="RX INT2_1 MIX1 INP0" value="RX2"/>
         <ctl name="AUX_MUX" value="RX2"/>
@@ -738,11 +739,13 @@
         <ctl name="AUX_MIXER Switch" value="1"/>
         <ctl name="RX_RX2 Digital Volume" value="84"/>
         <ctl name="HAC_PA Switch" value="1"/>
-    </path>
+    </path> -->
 
     <path name="voice-handset-hac">
-        <path name="voice-handset" />
-        <path name="voice-hac" />
+        <ctl name="aw_dev_0_switch" value="Enable" />
+        <ctl name="aw_dev_0_prof" value="receiver" />
+        <ctl name="aw_dev_2_switch" value="Enable" />
+        <ctl name="aw_dev_2_prof" value="receiver" />
     </path>
 
     <path name="voice-handset-hdk">

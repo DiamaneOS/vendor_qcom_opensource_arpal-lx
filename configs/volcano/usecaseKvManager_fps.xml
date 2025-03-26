@@ -928,8 +928,8 @@
             <keys_and_values StreamType="PAL_STREAM_VOIP_RX" CustomConfig="HAC">
                 <!-- DEVICERX - HANDSET -->
                 <graph_kv key="0xA2000000" value="0xA2000004"/>
-                <!-- DEVICEPP_RX - DEVICEPP_RX_VOICE_Fluence_NN_NS -->
-                <graph_kv key="0xAC000000" value="0xAC000009"/>
+                <!-- DEVICEPP_RX - DEVICEPP_RX_VOIP_Fluence_NN_NS -->
+                <graph_kv key="0xAC000000" value="0xAC00000A"/>
             </keys_and_values>
             <keys_and_values StreamType="PAL_STREAM_VOICE_CALL">
                 <!-- DEVICERX - HANDSET -->

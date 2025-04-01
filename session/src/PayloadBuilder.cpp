@@ -3408,6 +3408,22 @@ int PayloadBuilder::populateDevicePPCkv(Stream *s, std::vector <std::pair<int,in
         devInfo.isUSBUUIdBasedTuningEnabledFlag = 0;
         rm->getDeviceInfo(dAttr.id, sattr->type, dAttr.custom_config.custom_key, &devInfo);
 
+        PAL_DBG(LOG_TAG,"SR-info PayloadBuilder::populateDevicePPCkv stream_type=%d stream_direction=%d Sample Rate[%d]\n",sattr->type, sattr->direction, dAttr.config.sample_rate);
+        if (sattr->direction == PAL_AUDIO_OUTPUT || sattr->direction == PAL_AUDIO_INPUT) {
+            if (dAttr.config.sample_rate == 8000) {
+                keyVector.push_back(std::make_pair(SAMPLINGRATE, SAMPLINGRATE_8K));
+            }
+            else if (dAttr.config.sample_rate == 16000) {
+                keyVector.push_back(std::make_pair(SAMPLINGRATE, SAMPLINGRATE_16K));
+            }
+            else if (dAttr.config.sample_rate == 32000) {
+                keyVector.push_back(std::make_pair(SAMPLINGRATE, SAMPLINGRATE_32K));
+            }
+            else if (dAttr.config.sample_rate == 48000) {
+                keyVector.push_back(std::make_pair(SAMPLINGRATE, SAMPLINGRATE_48K));
+            }
+        }
+
         switch (sattr->type) {
             case PAL_STREAM_VOICE_UI:
                 PAL_INFO(LOG_TAG,"channels %d, id %d\n",dAttr.config.ch_info.channels, dAttr.id);

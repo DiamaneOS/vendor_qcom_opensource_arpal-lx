@@ -117,7 +117,9 @@ static int aw_ar_cali_exe_create_all_dev(struct aw882xx *aw882xx)
         return AW_FAIL;
     }
 
-    aw882xx->num_or_index = aw882xx->dev_num;
+    AWPRINTFE("aw_ar_cali_exe_create_all_dev Set force dev_num to 2, Hac no need cali!!");
+    //aw882xx->num_or_index = aw882xx->dev_num;
+    aw882xx->num_or_index = 2;
 
     aw882xx->aw_dev = (struct aw_dev *)calloc(aw882xx->dev_num, sizeof(struct aw_dev));
     if (aw882xx->aw_dev == NULL) {

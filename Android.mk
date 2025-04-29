@@ -52,6 +52,7 @@ endif
 LOCAL_CFLAGS += -DAW_BACK_END_NAME=\"MI2S-LPAIF_WSA-RX-PRIMARY\"
 LOCAL_CFLAGS += -DAW_PCM_NAME_LIST=\"PCM100,PCM101,PCM102,PCM103,PCM104,COMPRESS105,VOICEMMODE1p,VOICEMMODE2p,VOICEMMODE1c,VOICEMMODE2c,PCM110,PCM111,PCM112,PCM113,PCM114,PCM115,PCM116,PCM117,PCM118,PCM119,PCM120,PCM121,PCM122,PCM123,PCM124,PCM125,PCM126\"
 LOCAL_CFLAGS        += -DAUDIO_FEATURE_STATS_UNSUPPORTED
+LOCAL_CFLAGS        += -DPAL_MEMLOG_UNSUPPORTED
 
 LOCAL_C_INCLUDES := \
     $(TOP)/system/media/audio_route/include \
@@ -137,8 +138,7 @@ LOCAL_SRC_FILES := \
     utils/src/PalRingBuffer.cpp \
     utils/src/SignalHandler.cpp \
     utils/src/AudioHapticsInterface.cpp \
-    utils/src/MetadataParser.cpp \
-    utils/src/MemLogBuilder.cpp
+    utils/src/MetadataParser.cpp
 
 
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/awinic_ar/inc
@@ -171,7 +171,6 @@ LOCAL_SHARED_LIBRARIES := \
     libutilscallstack \
     libagmclient \
     libvui_intf \
-    libarmemlog \
     libhidlbase
 
 ifeq ($(call is-board-platform-in-list,kalama pineapple), true)

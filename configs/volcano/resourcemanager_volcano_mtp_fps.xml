@@ -240,16 +240,40 @@
                 <ec_enable>1</ec_enable>
                 <channels>2</channels>
                 <snd_device_name>handset-dual-mic-stereo</snd_device_name>
-                <custom-config key="8K">
+                <custom-config key="voipapp1_8K">
                     <samplerate>8000</samplerate>
                 </custom-config>
-                <custom-config key="16K">
+                <custom-config key="voipapp1_16K">
                     <samplerate>16000</samplerate>
                 </custom-config>
-                <custom-config key="32K">
+                <custom-config key="voipapp1_32K">
                     <samplerate>32000</samplerate>
                 </custom-config>
-                <custom-config key="48K">
+                <custom-config key="voipapp1_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_48K">
                     <samplerate>48000</samplerate>
                 </custom-config>
             </usecase>
@@ -384,16 +408,40 @@
                 <ec_enable>1</ec_enable>
                 <channels>1</channels>
                 <snd_device_name>speaker-bootom-mic</snd_device_name>
-                <custom-config key="8K">
+                <custom-config key="voipapp1_8K">
                     <samplerate>8000</samplerate>
                 </custom-config>
-                <custom-config key="16K">
+                <custom-config key="voipapp1_16K">
                     <samplerate>16000</samplerate>
                 </custom-config>
-                <custom-config key="32K">
+                <custom-config key="voipapp1_32K">
                     <samplerate>32000</samplerate>
                 </custom-config>
-                <custom-config key="48K">
+                <custom-config key="voipapp1_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_48K">
                     <samplerate>48000</samplerate>
                 </custom-config>
             </usecase>
@@ -475,16 +523,40 @@
                 <samplerate>48000</samplerate>
                 <bit_width>16</bit_width>
                 <ec_enable>1</ec_enable>
-                <custom-config key="8K">
+                <custom-config key="voipapp1_8K">
                     <samplerate>8000</samplerate>
                 </custom-config>
-                <custom-config key="16K">
+                <custom-config key="voipapp1_16K">
                     <samplerate>16000</samplerate>
                 </custom-config>
-                <custom-config key="32K">
+                <custom-config key="voipapp1_32K">
                     <samplerate>32000</samplerate>
                 </custom-config>
-                <custom-config key="48K">
+                <custom-config key="voipapp1_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_48K">
                     <samplerate>48000</samplerate>
                 </custom-config>
             </usecase>
@@ -527,16 +599,40 @@
             </usecase>
             <usecase>
                 <name>PAL_STREAM_VOIP_TX</name>
-                <custom-config key="8K">
+                <custom-config key="voipapp1_8K">
                     <samplerate>8000</samplerate>
                 </custom-config>
-                <custom-config key="16K">
+                <custom-config key="voipapp1_16K">
                     <samplerate>16000</samplerate>
                 </custom-config>
-                <custom-config key="32K">
+                <custom-config key="voipapp1_32K">
                     <samplerate>32000</samplerate>
                 </custom-config>
-                <custom-config key="48K">
+                <custom-config key="voipapp1_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_48K">
                     <samplerate>48000</samplerate>
                 </custom-config>
             </usecase>
@@ -597,16 +693,40 @@
             <usecase>
                 <name>PAL_STREAM_VOIP_TX</name>
                 <ec_enable>1</ec_enable>
-                <custom-config key="8K">
+                <custom-config key="voipapp1_8K">
                     <samplerate>8000</samplerate>
                 </custom-config>
-                <custom-config key="16K">
+                <custom-config key="voipapp1_16K">
                     <samplerate>16000</samplerate>
                 </custom-config>
-                <custom-config key="32K">
+                <custom-config key="voipapp1_32K">
                     <samplerate>32000</samplerate>
                 </custom-config>
-                <custom-config key="48K">
+                <custom-config key="voipapp1_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_48K">
                     <samplerate>48000</samplerate>
                 </custom-config>
             </usecase>
@@ -727,16 +847,40 @@
             </usecase>
             <usecase>
                 <name>PAL_STREAM_VOIP_TX</name>
-                <custom-config key="8K">
+                <custom-config key="voipapp1_8K">
                     <samplerate>8000</samplerate>
                 </custom-config>
-                <custom-config key="16K">
+                <custom-config key="voipapp1_16K">
                     <samplerate>16000</samplerate>
                 </custom-config>
-                <custom-config key="32K">
+                <custom-config key="voipapp1_32K">
                     <samplerate>32000</samplerate>
                 </custom-config>
-                <custom-config key="48K">
+                <custom-config key="voipapp1_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp2_48K">
+                    <samplerate>48000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_8K">
+                    <samplerate>8000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_16K">
+                    <samplerate>16000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_32K">
+                    <samplerate>32000</samplerate>
+                </custom-config>
+                <custom-config key="voipapp3_48K">
                     <samplerate>48000</samplerate>
                 </custom-config>
             </usecase>

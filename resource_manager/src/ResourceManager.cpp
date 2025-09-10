@@ -14106,6 +14106,8 @@ exit:
 
 void ResourceManager::setAwinicSpkMode(void)
 {
+    char propValue[256] = {0};
+
     PAL_INFO(LOG_TAG, "setAwinicSpkMode cur_audio_mode，%d",cur_audio_mode);
     switch(cur_audio_mode) {
         case AUDIO_MODE_NORMAL:
@@ -14122,8 +14124,14 @@ void ResourceManager::setAwinicSpkMode(void)
             AwSpkMode = 1; //Music profile
             break;
     }
-    if (!isSpeakerProtectionEnabled)
-            AwSpkMode = 0; //Bypass profile, only factory
+
+    property_get("debug.ctsv.audio.loopback", propValue, "0");
+
+    if ((!isSpeakerProtectionEnabled) || (atoi(propValue) == 1)) {
+        AwSpkMode = 0; //Bypass profile, only factory or ctsv loopback_latency test
+    }
+
+    PAL_INFO(LOG_TAG, "AwSpkMode=%d,",AwSpkMode);
 }
 
 bool ResourceManager::checkDeviceSwitchForHaptics(struct pal_device *inDevAttr,

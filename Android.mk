@@ -65,7 +65,6 @@ ifneq ($(TARGET_KERNEL_VERSION), 4.4)
 ifneq ($(TARGET_KERNEL_VERSION), 4.9)
 ifneq ($(TARGET_KERNEL_VERSION), 5.4)
 LOCAL_CFLAGS        += -DADSP_SLEEP_MONITOR
-LOCAL_C_INCLUDES += $(TOP)/kernel_platform/msm-kernel/include/uapi/misc
 endif
 endif
 endif
@@ -73,9 +72,9 @@ endif
 endif
 endif
 
-LOCAL_C_INCLUDES              += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
-LOCAL_C_INCLUDES              += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/techpack/audio/include
-LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
+# Kernel UAPI headers (misc/adsp_sleepmon.h) come from the device's sanitized
+# header library; the ALSA and compress headers from bionic.
+LOCAL_HEADER_LIBRARIES += qti_kernel_headers
 
 LOCAL_EXPORT_C_INCLUDE_DIRS   := $(LOCAL_PATH)/inc
 
@@ -149,17 +148,16 @@ LOCAL_SRC_FILES += \
     awinic_ar/src/aw_ar_monitor.c \
     awinic_ar/src/aw_ar_cali_exe.c
 
-LOCAL_HEADER_LIBRARIES := \
+# The memory logger, feature statistics and library-based voice UI headers
+# are closed and their features are compiled out (PAL_MEMLOG_UNSUPPORTED,
+# AUDIO_FEATURE_STATS_UNSUPPORTED); capi_v2.h is in session/inc.
+LOCAL_HEADER_LIBRARIES += \
     libarpal_headers \
     libspf-headers \
-    libcapiv2_headers \
     libagm_headers \
     libacdb_headers \
     libarosal_headers \
     libvui_dmgr_headers \
-    libaudiofeaturestats_headers \
-    libarvui_intf_headers \
-    libarmemlog_headers \
     libar-gsl_headers
 
 LOCAL_SHARED_LIBRARIES := \
@@ -189,6 +187,10 @@ else
 LOCAL_C_INCLUDES       += $(TOP)/external/tinycompress/include
 LOCAL_SHARED_LIBRARIES += libtinyalsa libtinycompress
 endif
+
+# As the stock FP6 build: control-flow integrity and the integer overflow
+# sanitizer.
+LOCAL_SANITIZE := cfi integer_overflow
 
 include $(BUILD_SHARED_LIBRARY)
 
@@ -269,7 +271,8 @@ include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
 
-include $(PAL_BASE_PATH)/plugins/Android.mk
+# Not built: the Bluetooth codec and voice UI plugins. Nothing loads them
+# on this device, and the voice UI plugins need closed headers.
 include $(PAL_BASE_PATH)/ipc/HwBinders/Android.mk
 
 endif #TARGET_USES_QCOM_MM_AUDIO

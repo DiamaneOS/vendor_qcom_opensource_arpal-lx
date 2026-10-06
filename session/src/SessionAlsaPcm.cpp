@@ -3046,8 +3046,9 @@ int SessionAlsaPcm::setParameters(Stream *streamHandle, int tagId, uint32_t para
                 PAL_ERR(LOG_TAG, "getStreamAttributes Failed \n");
                 goto exit;
             }
-            if (sAttr.direction == PAL_AUDIO_OUTPUT &&
-               (sAttr.type == PAL_STREAM_DEEP_BUFFER || PAL_STREAM_PCM_OFFLOAD)) {
+            /* The stream type check was always true ("|| PAL_STREAM_PCM_OFFLOAD"),
+             * so every output stream gets the gain, as in the stock build. */
+            if (sAttr.direction == PAL_AUDIO_OUTPUT) {
                 status = SessionAlsaUtils::getModuleInstanceId(mixer, device,
                          rxAifBackEnds[0].second.data(), tagId, &miid);
                 PAL_DBG(LOG_TAG, "Gainlog - Get MIID status - %d", status);

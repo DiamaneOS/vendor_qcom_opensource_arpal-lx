@@ -2557,7 +2557,7 @@ int SessionAlsaPcm::write(Stream *s, int tag, struct pal_buffer *buf, int * size
             if (sAttr.out_media_config.sample_rate)
                 ns = pcm_bytes_to_frames(pcm, sizeWritten)*1000000000LL/
                     sAttr.out_media_config.sample_rate;
-            PAL_DBG(LOG_TAG, "1.bufsize:%u ns:%ld", sizeWritten, ns);
+            PAL_DBG(LOG_TAG, "1.bufsize:%lu ns:%ld", sizeWritten, ns);
             requestAdmFocus(s, ns);
             status =  pcm_mmap_write(pcm, data,  sizeWritten);
             releaseAdmFocus(s);
@@ -2589,7 +2589,7 @@ int SessionAlsaPcm::write(Stream *s, int tag, struct pal_buffer *buf, int * size
             if (sAttr.out_media_config.sample_rate)
                 ns = pcm_bytes_to_frames(pcm, sizeWritten)*1000000000LL/
                     sAttr.out_media_config.sample_rate;
-            PAL_DBG(LOG_TAG, "2.bufsize:%u ns:%ld", sizeWritten, ns);
+            PAL_DBG(LOG_TAG, "2.bufsize:%lu ns:%ld", sizeWritten, ns);
             requestAdmFocus(s, ns);
             status =  pcm_mmap_write(pcm, data,  sizeWritten);
             releaseAdmFocus(s);
@@ -3046,8 +3046,9 @@ int SessionAlsaPcm::setParameters(Stream *streamHandle, int tagId, uint32_t para
                 PAL_ERR(LOG_TAG, "getStreamAttributes Failed \n");
                 goto exit;
             }
-            if (sAttr.direction == PAL_AUDIO_OUTPUT &&
-               (sAttr.type == PAL_STREAM_DEEP_BUFFER || PAL_STREAM_PCM_OFFLOAD)) {
+            /* The stream type check was always true ("|| PAL_STREAM_PCM_OFFLOAD"),
+             * so every output stream gets the gain, as in the stock build. */
+            if (sAttr.direction == PAL_AUDIO_OUTPUT) {
                 status = SessionAlsaUtils::getModuleInstanceId(mixer, device,
                          rxAifBackEnds[0].second.data(), tagId, &miid);
                 PAL_DBG(LOG_TAG, "Gainlog - Get MIID status - %d", status);

@@ -2611,6 +2611,12 @@ int32_t SpeakerProtection::setParameter(uint32_t param_id, void *param)
 
 int32_t SpeakerProtection::getFTMParameter(void **param)
 {
+    /* The feedback front end is allocated only while speaker feedback runs. */
+    if (pcmDevIdTx.empty()) {
+        PAL_ERR(LOG_TAG, "speaker feedback not running");
+        return -EINVAL;
+    }
+
     int size = 0, status = 0 ;
     int spkr1_status = 0;
     int spkr2_status = 0;

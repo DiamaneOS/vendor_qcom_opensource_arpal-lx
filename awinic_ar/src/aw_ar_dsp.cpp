@@ -890,7 +890,8 @@ static int aw_ar_dsp_platform_init(struct aw_ar_info *ar_info, bool tranfer_test
     }
 
     memset(ar_info->p_intf_name, 0, sizeof(ar_info->p_intf_name));
-    strcpy(ar_info->p_intf_name, backEndName.c_str());
+    // DiamaneOS: bounded; the backend name comes from ResourceManager's configuration.
+    strlcpy(ar_info->p_intf_name, backEndName.c_str(), sizeof(ar_info->p_intf_name));
 
 	/*priv-pcm_idx first test*/
 	if (g_priv_pcm_indx != 0) {
